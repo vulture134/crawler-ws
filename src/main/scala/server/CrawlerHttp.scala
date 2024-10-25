@@ -20,7 +20,7 @@ object CrawlerHttp {
   }
 
   def getTitles(urls: List[String]) =
-  ZIO.foreach(urls)(reqUrl => for {
+  ZIO.foreachPar(urls)(reqUrl => for {
     res <- Client.request(
       url = reqUrl,
       method = Method.GET,
